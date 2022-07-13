@@ -429,8 +429,8 @@ productosCtrl.addnumero = async (req, res, next) => {
 
 productosCtrl.subirImagen = (req, res, next) => {
 	imagen.upload(req, res, function(err) {
+		console.log(err)
 		if (err) {
-			console.log(err)
 			res.status(500).json({ message: 'formato de imagen no valido', err });
 		} else {
 			return next();
@@ -935,15 +935,20 @@ productosCtrl.createProducto = async (req, res) => {
 };
 
 productosCtrl.updateProducto = async (req, res, next) => {
+	console.log("cae aqui");
 	try {
 		const productoDeBase = await Producto.findById(req.params.id);
 		console.log(req.body);
 		//Construir nuevo producto
 		const nuevoProducto = req.body;
 		//Verificar si mandaron imagen
+		console.log(req)
+		console.log(req.file)
 		if (req.file) {
 			nuevoProducto.imagen = req.file.key;
+			console.log("entra2")
 			await imagen.eliminarImagen(productoDeBase.imagen);
+			console.log("entra3")
 		} else {
 			nuevoProducto.imagen = productoDeBase.imagen;
 		}
@@ -993,6 +998,7 @@ productosCtrl.updateProducto = async (req, res, next) => {
 		}
 		res.status(200).json({ message: 'Producto actualizado', producto });
 	} catch (err) {
+		console.log(err);
 		res.status(500).json({ message: 'Error en el servidor', err });
 		console.log(err);
 		next();

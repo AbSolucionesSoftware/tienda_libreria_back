@@ -9,12 +9,6 @@ aws.config.update({
     region: process.env.AWS_REGION
 })
 
-console.log({
-  secretAccessKey: process.env.AWS_SECRET_ACCESS,
-  accessKeyId: process.env.AWS_ACCESS_ID,
-  region: process.env.AWS_REGION
-})
-
 const s3 = new aws.S3();
 
 //Filtros que se aceptaran en los archivos
