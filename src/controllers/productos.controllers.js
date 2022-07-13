@@ -947,7 +947,9 @@ productosCtrl.updateProducto = async (req, res, next) => {
 		if (req.file) {
 			nuevoProducto.imagen = req.file.key;
 			console.log("entra2")
-			await imagen.eliminarImagen(productoDeBase.imagen);
+			if(productoDeBase.imagen){
+				await imagen.eliminarImagen(productoDeBase.imagen);
+			}
 			console.log("entra3")
 		} else {
 			nuevoProducto.imagen = productoDeBase.imagen;
