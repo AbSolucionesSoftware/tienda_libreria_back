@@ -430,6 +430,7 @@ productosCtrl.addnumero = async (req, res, next) => {
 productosCtrl.subirImagen = (req, res, next) => {
 	imagen.upload(req, res, function(err) {
 		if (err) {
+			console.log(err)
 			res.status(500).json({ message: 'formato de imagen no valido', err });
 		} else {
 			return next();
