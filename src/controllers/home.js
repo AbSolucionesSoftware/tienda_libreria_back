@@ -115,5 +115,17 @@ homeCtrl.homaQuerysShop = async (req,res) => {
     }
 }
 
+homeCtrl.rutaAppSheep = async (req,res) => {
+    try {
+		const query = req.query
+		console.log({message: "hello world", query})
+        res.status(200).json({message: "hello world", query});  
+    } catch (error) {
+		console.log(error)
+        res.status(500).json({ message: "Error en el servidor",error });	
+    }
+}
+
+
 
 module.exports = homeCtrl;
